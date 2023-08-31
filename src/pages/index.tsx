@@ -1,25 +1,22 @@
 // pages/index.js
-import { Button, Typography ,Container} from '@mui/material';
-import {textAlign} from "@mui/system";
+import {Button, Typography, Container, Link} from '@mui/material';
+import useAuthentication from "@/hooks/authentication";
 
 function HomePage() {
-    const containerStyles = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-    };
+    useAuthentication()
     return (
-        <Container style={{alignItems:"center",justifyContent:"center",display:'flex',flexDirection:"column"}}>
+        <Container className='container-styles'>
             <Typography variant="h1" textAlign='center'>Todo App</Typography>
-                <Typography>Simple app for organizing your todos</Typography>
-                <Button variant="contained" color="primary">
-                    Login
-                </Button>
-                <br/>
+            <Typography>Simple app for organizing your todos</Typography>
+            <Link href="/login"><Button variant="contained" color="primary">
+                Login
+            </Button></Link>
+            <br/>
+            <Link href='/register'>
                 <Button variant="text" color="primary">
                     Register
                 </Button>
+            </Link>
         </Container>
     );
 }
