@@ -1,20 +1,7 @@
 import {Container, Typography, Input, Button, Link} from "@mui/material";
 import {useState} from "react";
-import {IUserRegister} from "@/types/user.types";
 import {useRouter} from "next/router";
-
-async function registerUser(credentials: IUserRegister): Promise<any> {
-
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/register`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-    return response.json();
-}
-
+import {registerUser} from "@/api/auth";
 export default function Login() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');

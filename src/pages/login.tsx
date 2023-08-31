@@ -1,19 +1,8 @@
 import {Container, Typography, Input, Button, Link} from "@mui/material";
 import {useState} from "react";
-import {IUserAuth} from "@/types/user.types";
 import {useRouter} from "next/router";
+import {loginUser} from "@/api/auth";
 
-async function loginUser(credentials: IUserAuth):Promise<any> {
-
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-    return response.json();
-}
 
 export default function Login() {
     const [email, setEmail] = useState<string>('');
