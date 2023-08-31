@@ -7,8 +7,6 @@ export default function Login() {
     const [password, setPassword] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [surname, setSurname] = useState<string>('');
-
-
     const router = useRouter();
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         if (!email || !password)
@@ -25,7 +23,7 @@ export default function Login() {
             return
         }
         localStorage.setItem('token', response.accessToken)
-        await router.push('/')
+        await router.push('/todo')
     }
     return (
         <Container className='container-styles'>

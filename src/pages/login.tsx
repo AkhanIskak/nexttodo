@@ -21,7 +21,7 @@ export default function Login() {
             return
         }
         localStorage.setItem('token',response.accessToken)
-        await router.push('/')
+        await router.push('/todo')
     }
     return (
         <Container className='container-styles'>

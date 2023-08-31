@@ -10,7 +10,8 @@ export async function registerUser(credentials: IUserRegister): Promise<any> {
     })
     return response.json();
 }
-export async function loginUser(credentials: IUserAuth):Promise<any> {
+
+export async function loginUser(credentials: IUserAuth): Promise<any> {
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, {
         method: 'POST',
@@ -20,4 +21,14 @@ export async function loginUser(credentials: IUserAuth):Promise<any> {
         body: JSON.stringify(credentials)
     })
     return response.json();
+}
+
+export function whoAmI(token: string) {
+    return fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/whoami`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+    })
 }

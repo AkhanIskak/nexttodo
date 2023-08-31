@@ -1,9 +1,7 @@
 // pages/index.js
 import {Button, Typography, Container, Link} from '@mui/material';
-import useAuthentication from "@/hooks/authentication";
 
 function HomePage() {
-    useAuthentication()
     return (
         <Container className='container-styles'>
             <Typography variant="h1" textAlign='center'>Todo App</Typography>

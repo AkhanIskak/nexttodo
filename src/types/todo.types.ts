@@ -1,4 +1,5 @@
 export interface ITodo {
+    status?: string;
     id?: string;
     name?: string;
     description?: string;

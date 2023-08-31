@@ -5,10 +5,10 @@ import {ITodoFrom} from "@/types/todo.types";
 export default function TodoForm({addTodo}: ITodoFrom) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('')
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!description || !name) return;
-        addTodo({name, description});
+        await addTodo({name, description});
         setName('');
         setDescription('')
     };
