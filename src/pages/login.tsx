@@ -9,8 +9,11 @@ export default function Login() {
     const [password, setPassword] = useState<string>('');
     const router = useRouter();
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        if (!email || !password)
+        if (!email || !password){
             alert('Please set email or password')
+            return;
+        }
+
         e.preventDefault()
         const response = await loginUser({
             email,

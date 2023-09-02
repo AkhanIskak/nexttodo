@@ -6,6 +6,8 @@ import {ITodo} from "@/types/todo.types";
 import {getTodos, postTodo, removeTodo} from "@/api/todos.api";
 import useAuthentication from "@/hooks/authentication";
 import {useRouter} from "next/router";
+import SearchTodo from "@/components/TodoSearch";
+import {set} from "zod";
 
 const TodoPage = () => {
     useAuthentication()
@@ -23,7 +25,9 @@ const TodoPage = () => {
         setTodos(todos.filter((todo) => todo.id !== id));
     };
     const router = useRouter();
-
+    const searchTodo = async (name: string) => {
+        getTodos(name).then((data) => setTodos(data))
+    }
     const logout = () => {
         localStorage.removeItem('token');
         router.push('/')
@@ -39,6 +43,9 @@ const TodoPage = () => {
             <Button variant='contained' color='error' onClick={logout}>Logout</Button>
             <Container className='container-styles'>
                 <Typography variant="h4" textAlign='center'>Todo App</Typography>
+                <Typography variant="h6" textAlign='center'>Search todo</Typography>
+                <SearchTodo searchTodo={searchTodo}/>
+                <Typography variant="h6" textAlign='center'>Create todo</Typography>
                 <TodoForm addTodo={addTodo}/>
                 <TodoList todos={todos} deleteTodo={deleteTodo}/>
             </Container>

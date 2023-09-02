@@ -1,8 +1,8 @@
 export interface ITodo {
     status?: string;
     id?: string;
-    name?: string;
-    description?: string;
+    name: string;
+    description: string;
     createdAt?: number;
     finishedAt?: number;
     //mongodb id of user

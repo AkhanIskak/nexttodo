@@ -1,7 +1,10 @@
 import {ITodo} from "@/types/todo.types";
 
-export async function getTodos() {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/todo`, {
+export async function getTodos(name?: string) {
+    let url = `${process.env.NEXT_PUBLIC_API_URL}/todo`
+    if (name)
+        url = url + `?name=${name}`
+    const response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
