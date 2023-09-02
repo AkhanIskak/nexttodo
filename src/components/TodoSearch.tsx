@@ -9,5 +9,4 @@ export default function SearchTodo({searchTodo}: { searchTodo: any }) {
             placeholder="Todo name"
         />
     )
-
 }
