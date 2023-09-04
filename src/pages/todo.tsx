@@ -13,8 +13,8 @@ const TodoPage = () => {
     useAuthentication()
     const [todos, setTodos] = useState<ITodo[]>([]);
     const [oldest, setOldest] = useState(true);
-    const addTodo = async (todo: ITodo) => {
-        const response = await postTodo(todo);
+    const addTodo = async (todo: Partial<ITodo>) => {
+        const response = await postTodo(todo as ITodo);
         setTodos([...todos, {name: response.name, description: response.description, createdAt: response.createdAt}]);
     };
     const deleteTodo = async (id: string) => {
@@ -37,7 +37,7 @@ const TodoPage = () => {
         if (oldest)
             setTodos(todos.sort((a, b) => a.createdAt - b.createdAt))
         else
-            setTodos(todos.sort((a, b) => b.createdAt - a.createdAt))
+            setTodos(todos.sort((a, b) => b.createdAt - a.createdAt * 1))
 
         setOldest(!oldest)
     }

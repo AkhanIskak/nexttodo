@@ -3,7 +3,7 @@ export interface ITodo {
     id?: string;
     name: string;
     description: string;
-    createdAt?: number;
+    createdAt: number;
     finishedAt?: number;
     //mongodb id of user
     user?: string
