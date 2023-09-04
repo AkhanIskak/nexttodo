@@ -12,6 +12,7 @@ import {set} from "zod";
 const TodoPage = () => {
     useAuthentication()
     const [todos, setTodos] = useState<ITodo[]>([]);
+    const [oldest, setOldest] = useState(true);
     const addTodo = async (todo: ITodo) => {
         const response = await postTodo(todo);
         setTodos([...todos, {name: response.name, description: response.description, createdAt: response.createdAt}]);
@@ -32,6 +33,14 @@ const TodoPage = () => {
         localStorage.removeItem('token');
         router.push('/')
     }
+    const toggleOldest = () => {
+        if (oldest)
+            setTodos(todos.sort((a, b) => a.createdAt - b.createdAt))
+        else
+            setTodos(todos.sort((a, b) => b.createdAt - a.createdAt))
+
+        setOldest(!oldest)
+    }
     useEffect(() => {
         getTodos().then((data) => {
             setTodos(data);
@@ -43,6 +52,10 @@ const TodoPage = () => {
             <Button variant='contained' color='error' onClick={logout}>Logout</Button>
             <Container className='container-styles'>
                 <Typography variant="h4" textAlign='center'>Todo App</Typography>
+                <Typography variant="h6" textAlign='center'>Sort Todo</Typography>
+                <Button onClick={toggleOldest} variant="contained" color="primary">
+                    {oldest ? "Oldest" : "Latest"}
+                </Button>
                 <Typography variant="h6" textAlign='center'>Search todo</Typography>
                 <SearchTodo searchTodo={searchTodo}/>
                 <Typography variant="h6" textAlign='center'>Create todo</Typography>
