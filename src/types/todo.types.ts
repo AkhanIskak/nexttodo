@@ -16,7 +16,7 @@ export interface ITodoListProps {
     deleteTodo: deleteTodo
 }
 
-type addTodo = (todo: ITodo) => void
+type addTodo = (todo: Partial<ITodo>) => void
 
 export interface ITodoFrom {
     addTodo: addTodo
